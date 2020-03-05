@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
       10
     );
 
-    if (hour < 14) {
+    if (hour < 15) {
       // Find upload from today
       const today = new Date();
       today.setHours(0, 0, 0, 0);
