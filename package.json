@@ -1,0 +1,17 @@
+{
+  "name": "perronnord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.633.0",
+    "mime-types": "^2.1.26",
+    "node-fetch": "^2.6.0"
+  }
+}

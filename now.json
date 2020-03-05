@@ -1,0 +1,7 @@
+{
+  "env": {
+    "PN_AWS_ACCESS_KEY_ID": "@pn-aws-access-key-id",
+    "PN_AWS_SECRET_ACCESS_KEY": "@pn-aws-secret-access-key",
+    "PN_AWS_BUCKET": "@pn-aws-bucket"
+  }
+}
