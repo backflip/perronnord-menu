@@ -2,6 +2,8 @@
 
 Photo of current day's menu is sent via WhatsApp to Twilio, uploaded to S3 and displayed until 15.00.
 
+Why? Because sending the menu via WhatsApp to a group of chosen ones is the current publication process.
+
 ## Embed
 
 `DEPLOYMENT_URL/api` returns either image or 404 with error text.
