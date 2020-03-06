@@ -11,7 +11,7 @@ Why? Because sending the menu via WhatsApp to a group of chosen ones is the curr
 Example with toggle button:
 
 ```js
-(function(callback) {
+(function() {
   // Prepare image
   var img = new Image();
   img.className = "img img--menu";
@@ -40,7 +40,10 @@ Example with toggle button:
   };
 
   // Load image
-  img.src = "DEPLOYMENT_URL/api";
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  img.src = "DEPLOYMENT_URL/api?" + today.getTime();
 })();
 ```
 
