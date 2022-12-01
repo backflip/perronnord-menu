@@ -14,7 +14,6 @@ const img = new Image();
 img.classList.add("menu-image");
 img.setAttribute("alt", "Mittagsmenu");
 
-// Insert toggle button
 img.onload = () => {
   const button = document.createElement("button");
 
