@@ -20,6 +20,7 @@ const config = {
     updateFailedTiming:
       "Das Menu kann nur zwischen 0.00 und 14.00 Uhr aktualisiert werden.",
     updateFailedMissingPhoto: "Bitte Foto anhängen.",
+    incorrectToken: "Fehler: Das korrekte Token wurde nicht mitgeliefert.",
   },
   directory: "/data",
 };
@@ -118,6 +119,10 @@ export default async function (fastify, opts) {
 
       // Handle Twilio request
       reply.header("Content-Type", "text/xml");
+
+      if (request.query.token !== process.env.TOKEN) {
+        return reply.send(getTwilioResponse(config.messages.incorrectToken));
+      }
 
       if (!isAllowedTimeframe) {
         return reply.send(
