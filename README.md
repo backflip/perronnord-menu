@@ -1,62 +1,56 @@
 # Perronnord Menu
 
-Photo of current day's menu is sent via WhatsApp to Twilio, uploaded to S3 and displayed until 15.00.
-
-Why? Because sending the menu via WhatsApp to a group of chosen ones is the current publication process.
+Serve photo of today's lunch menu. Photo is uploaded via WhatsApp, using a Twilio WhatsApp Sandbox.
 
 ## Embed
 
-`DEPLOYMENT_URL/api` returns either image or 404 with error text.
+https://perronnord.responsive.ch/api returns either image or 404 with error text.
 
 Example with toggle button:
 
 ```js
-(function() {
-  // Prepare image
-  var img = new Image();
-  img.className = "img img--menu";
+const img = new Image();
 
-  img.onload = function() {
-    // Create button
-    var button = document.createElement("button");
-    button.innerText = "Mittagsmenu anzeigen";
-    button.className = "btn btn--menu";
-    document.body.appendChild(button);
+img.classList.add("menu-image");
+img.setAttribute("alt", "Mittagsmenu");
 
-    // Display image on click
-    button.addEventListener("click", function() {
-      if (!img.parentNode) {
-        document.body.appendChild(img);
-      }
+// Insert toggle button
+img.onload = () => {
+  const button = document.createElement("button");
 
-      if (button.getAttribute("aria-expanded") === "true") {
-        button.setAttribute("aria-expanded", "false");
-        img.style.display = "none";
-      } else {
-        button.setAttribute("aria-expanded", "true");
-        img.style.display = "block";
-      }
-    });
-  };
+  button.innerText = "Mittagsmenu";
+  button.classList.add("menu-btn");
+  button.setAttribute("type", "button");
+  button.setAttribute("aria-expanded", "false");
 
-  // Load image
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
+  button.addEventListener("click", () => {
+    if (!img.parentNode) {
+      document.body.appendChild(img);
+    }
 
-  img.src = "DEPLOYMENT_URL/api?" + today.getTime();
-})();
+    if (button.getAttribute("aria-expanded") === "true") {
+      button.setAttribute("aria-expanded", "false");
+      img.style.display = "none";
+    } else {
+      button.setAttribute("aria-expanded", "true");
+      img.style.display = "block";
+    }
+  });
+
+  document.body.appendChild(button);
+};
+
+img.src = "http://127.0.0.1:8080/api";
 ```
 
-## Setup
+## Deploy
 
-- Create bucket in [S3](https://aws.amazon.com/s3/)
-- Store [S3 credentials](./now.json) in [Now](https://zeit.co/docs/v2/serverless-functions/env-and-secrets)
-- Deploy via `npx now`
+- Deploy via `flyctl`, make sure a volume has been created before dpeloying the first time
 - Set up Webhook endpoint (`DEPLOYMENT_URL/api`) in [Twilio](https://www.twilio.com/docs/usage/webhooks)
 - Register with [Twilio WhatsApp Sandbox](https://www.twilio.com/docs/sms/whatsapp/api#twilio-sandbox-for-whatsapp)
 - Text like it's 1989
 
-## Local development
+## Develop locally
 
-- Create `.env` with [environment variables](./now.json)
-- Run via `npx now dev`
+- Build image: `docker build -t perronnord .`
+- Run: `docker run -p 8080:8080 -v $(pwd):/data perronnord`
