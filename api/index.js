@@ -13,7 +13,7 @@ const config = {
   messages: {
     errorApiNotFound: "Kein aktuelles Menu gefunden.",
     updateSuccessful:
-      "Menu erfolgreich aktualisiert und bis 13.30 Uhr sichtbar: https://perronnord-web.now.sh/#menu",
+      "Menu erfolgreich aktualisiert und bis 13.30 Uhr sichtbar: https://perronnord.ch/#menu",
     updateFailedTiming:
       "Das Menu kann nur zwischen 0.00 und 13.30 Uhr aktualisiert werden.",
     updateFailedMissingPhoto: "Bitte Foto anhängen."
