@@ -6,10 +6,16 @@ import {
   rmSync,
   writeFileSync,
 } from "fs";
+import { join } from "path";
 import { basename, extname } from "path";
 import FormBody from "@fastify/formbody";
 import Traps from "@dnlup/fastify-traps";
+import Static from "@fastify/static";
 import mime from "mime-types";
+import * as url from "url";
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const config = {
   deadlineHours: 14,
@@ -74,6 +80,11 @@ export default async function (fastify, opts) {
 
   // Handle form POST
   fastify.register(FormBody);
+
+  // Static files
+  fastify.register(Static, {
+    root: join(__dirname, "public"),
+  });
 
   // Basic index route
   fastify.get("/", function (request, reply) {

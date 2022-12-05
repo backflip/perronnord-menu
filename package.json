@@ -16,6 +16,7 @@
   "dependencies": {
     "@dnlup/fastify-traps": "^2.0.0",
     "@fastify/formbody": "^7.3.0",
+    "@fastify/static": "^6.6.0",
     "fastify": "^4.10.2",
     "fastify-cli": "^5.6.0",
     "mime-types": "^2.1.35"
