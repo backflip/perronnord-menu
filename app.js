@@ -88,7 +88,7 @@ export default async function (fastify, opts) {
 
   // Basic index route
   fastify.get("/", function (request, reply) {
-    reply.send(`Nein`);
+    reply.send(`Perronnord Menu API`);
   });
 
   // API route
