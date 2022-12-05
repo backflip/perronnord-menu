@@ -171,4 +171,11 @@ export default async function (fastify, opts) {
       return reply.send(getTwilioResponse(config.messages.updateSuccessful));
     },
   });
+
+  // Errors
+  fastify.setErrorHandler(function (error, request, reply) {
+    this.log.error(error);
+
+    reply.status(500).send({ ok: false });
+  });
 }
