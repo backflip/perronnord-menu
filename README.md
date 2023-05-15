@@ -6,7 +6,7 @@ Serve photo of today's lunch menu. Photo is uploaded via WhatsApp, using a Twili
 
 https://perronnord.responsive.ch/api returns either image or 404 with error text.
 
-Example with toggle button:
+Example:
 
 ```js
 const img = new Image();
@@ -15,28 +15,7 @@ img.classList.add("menu-image");
 img.setAttribute("alt", "Mittagsmenu");
 
 img.onload = () => {
-  const button = document.createElement("button");
-
-  button.innerText = "Mittagsmenu";
-  button.classList.add("menu-btn");
-  button.setAttribute("type", "button");
-  button.setAttribute("aria-expanded", "false");
-
-  button.addEventListener("click", () => {
-    if (!img.parentNode) {
-      document.body.appendChild(img);
-    }
-
-    if (button.getAttribute("aria-expanded") === "true") {
-      button.setAttribute("aria-expanded", "false");
-      img.style.display = "none";
-    } else {
-      button.setAttribute("aria-expanded", "true");
-      img.style.display = "block";
-    }
-  });
-
-  document.body.appendChild(button);
+  document.body.appendChild(img);
 };
 
 img.src = "https://perronnord.responsive.ch/api";
